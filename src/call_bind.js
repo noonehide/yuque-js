@@ -6,7 +6,7 @@ function myCall (context, ...args) {
     }
     const key = Symbol('key')
     context[key] = this
-    const res = context['key'](...args)
+    const res = context[key](...args)
     delete context[key]
     return res
 }
