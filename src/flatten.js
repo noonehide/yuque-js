@@ -22,7 +22,6 @@ const obj = {
 //    c: 3
 // }
 
-
 function flatten(data) {
     const res = {}
     function dfs(pre, prefix) {
