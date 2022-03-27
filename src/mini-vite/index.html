@@ -1,0 +1,36 @@
+<!--
+ * @Author: 水冰淼 <546483720@qq.com>
+ * @Date: 2021-10-22 20:57:45
+ * @LastEditTime: 2021-11-01 17:28:51
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \mini-vite\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hello,mini-Vite！！！</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+      // hash: 规避 通过process.env.NODE_ENV环境判断
+      window.process = {
+        env: {
+          NODE_ENV: 'dev',
+        }
+      };
+      function updateStyle(content) {
+         // 方法2
+        let style = document.createElement('style')
+        style.setAttribute('type', 'text/css')
+        style.innerHTML = content
+        document.head.appendChild(style)
+      }
+    </script>
+    <script src="/main.js" type="module"></script>
+</body>
+</html>
