@@ -25,10 +25,10 @@ class EasyPromise {
 
     reject = (reason) => {
         if (this.status === PENDING) {
-            this.status = FULFILLED
+            this.status = REJECTED
             this.reason = reason
             while (this.rejectedCallbacks.length) {
-                this.rejectedCallbacks.shift()(value)
+                this.rejectedCallbacks.shift()(reason)
             }
         }
     }
@@ -38,13 +38,13 @@ class EasyPromise {
     }
 
     then(onFulfilled, onReject) {
-        const realFullfilled = this.status === FULFILLED ? onFulfilled : value => value
-        const realReject = this.status === FULFILLED ? onReject : reason => { throw reason }
-
+        const realOnFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value;
+        const realOnRejected = typeof onReject === 'function' ? onReject : reason => {throw reason};
+    
         const promise2 = new EasyPromise((resolve, reject) => {
             const microFullfilled = queueMicrotask(() => {
                 try {
-                    const x = realFullfilled(this.value)
+                    const x = realOnFulfilled(this.value)
                     // 传入 resolvePromise 集中处理
                     resolvePromise(promise2, x, resolve, reject);
                 } catch (error) {
@@ -54,7 +54,7 @@ class EasyPromise {
 
             const microRejected = queueMicrotask(() => {
                 try {
-                    const x = realReject(this.value)
+                    const x = realOnRejected(this.reason)
                     resolvePromise(promise2, x, resolve, reject);
                 } catch (error) {
                     reject(error)

@@ -23,4 +23,5 @@ const obj =
     hobbies: { sports: '好家伙', tv: '雍正王朝' },
     works: ['2020', '2021']
 }
+obj.key = obj
 console.log('res', deepClone(obj))
