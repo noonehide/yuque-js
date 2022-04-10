@@ -1,0 +1,35 @@
+<html>
+
+<h4>这展示了 flex 增长</h4>
+<h5>A,B,C 和 F 具有 flex-grow:1。D 和 E 具有 flex-grow:2 .</h5>
+<div id="content">
+    <div class="box" style="background-color:red;">A</div>
+    <div class="box1" style="background-color:brown;">D</div>
+</div>
+
+<style>
+    #content {
+        display: flex;
+        width: 1000px;
+        height: 200px;
+    }
+
+    .box {
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 100px;
+        background-color: red;
+    }
+
+    .box1 {
+        /* flex-grow 分的是剩余的空间 左 = 100 + 800 *  (1 / 4) */
+        flex-grow: 3;
+        /* flex 元素仅在默认宽度之和大于容器的时候才会发生收缩 */
+        flex-shrink: 0;
+        /* 指定了 flex 元素在主轴方向上的初始大小 */
+        flex-basis: 100px;
+        background-color: blue;
+    }
+</style>
+
+</html>

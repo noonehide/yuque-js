@@ -1,0 +1,4 @@
+// Array
+// reduce
+// filter
+// forEach
